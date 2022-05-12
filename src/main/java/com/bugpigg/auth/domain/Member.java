@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @Entity
-public class User {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,15 +26,19 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(String oauthId, String name, String email, String imageUrl,
+    public Member(String oauthId, String name, String email, String imageUrl,
         Role role) {
         this(null, oauthId, name, email, imageUrl, role);
     }
 
-    public User update(String name, String email, String imageUrl) {
+    public Member update(String name, String email, String imageUrl) {
         this.name = name;
         this.email = email;
         this.imageUrl = imageUrl;
         return this;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
     }
 }
